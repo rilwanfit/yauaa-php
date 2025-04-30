@@ -5,9 +5,81 @@ bots:
   - pattern: "bingbot"
     name: "Bingbot"
 
+  - pattern: "DuckDuckBot"
+    name: "DuckDuckBot"
+
+  - pattern: "Baiduspider"
+    name: "BaiduSpider"
+
+  - pattern: "YandexBot"
+    name: "YandexBot"
+
+  - pattern: "Sogou"
+    name: "Sogou Spider"
+
+  - pattern: "Facebot"
+    name: "Facebook Bot"
+
+  - pattern: "Twitterbot"
+    name: "Twitter Bot"
+
+  - pattern: "Slackbot"
+    name: "Slack Bot"
+
+  - pattern: "Discordbot"
+    name: "Discord Bot"
+
+  - pattern: "MJ12bot"
+    name: "Majestic Bot"
+
+  - pattern: "SemrushBot"
+    name: "SEMRush Bot"
+
+  - pattern: "AhrefsBot"
+    name: "Ahrefs Bot"
+
+  - pattern: "DotBot"
+    name: "DotBot"
+
+  - pattern: "Applebot"
+    name: "Apple Bot"
+
+  - pattern: "LinkedInBot"
+    name: "LinkedIn Bot"
+
 browsers:
   - pattern: "~Chrome/(?<version>[\\d\\.]+)~i"
     name: "Chrome"
 
   - pattern: "~Firefox/(?<version>[\\d\\.]+)~i"
     name: "Firefox"
+
+  - pattern: "~Safari/(?<version>[\\d\\.]+)~i"
+    name: "Safari"
+
+  - pattern: "~Edge/(?<version>[\\d\\.]+)~i"
+    name: "Edge"
+
+  - pattern: "~OPR/(?<version>[\\d\\.]+)~i"
+    name: "Opera"
+
+  - pattern: "~CriOS/(?<version>[\\d\\.]+)~i"
+    name: "Chrome (iOS)"
+
+  - pattern: "~EdgA/(?<version>[\\d\\.]+)~i"
+    name: "Edge (Android)"
+
+  - pattern: "~SamsungBrowser/(?<version>[\\d\\.]+)~i"
+    name: "Samsung Internet"
+
+  - pattern: "~UCBrowser/(?<version>[\\d\\.]+)~i"
+    name: "UC Browser"
+
+  - pattern: "~Vivaldi/(?<version>[\\d\\.]+)~i"
+    name: "Vivaldi"
+
+  - pattern: "~Brave Chrome/(?<version>[\\d\\.]+)~i"
+    name: "Brave"
+
+  - pattern: "~QQBrowser/(?<version>[\\d\\.]+)~i"
+    name: "QQ Browser"
