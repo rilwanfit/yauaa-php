@@ -1,0 +1,13 @@
+bots:
+  - pattern: "Googlebot"
+    name: "Googlebot"
+
+  - pattern: "bingbot"
+    name: "Bingbot"
+
+browsers:
+  - pattern: "~Chrome/(?<version>[\\d\\.]+)~i"
+    name: "Chrome"
+
+  - pattern: "Firefox/(?<version>[\\d\\.]+)~i"
+    name: "Firefox"

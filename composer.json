@@ -1,0 +1,30 @@
+{
+    "name": "rilwanfit/yauaa-php",
+    "description": "Yet Another User Agent Analyzer – a PHP implementation",
+    "type": "library",
+    "require": {
+        "php": "^8.0",
+        "symfony/yaml": "^7.2"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^10"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Rilwanfit\\YauaaPhp\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Rilwanfit\\YauaaPhp\\Tests\\": "tests/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Mohamed Hanifa Rilwan",
+            "email": "rilwanfit@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable"
+}
