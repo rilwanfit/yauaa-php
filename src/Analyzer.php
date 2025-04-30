@@ -4,52 +4,57 @@ declare(strict_types=1);
 
 namespace Rilwanfit\YauaaPhp;
 
-use InvalidArgumentException;
-use Symfony\Component\Yaml\Yaml;
+use Rilwanfit\YauaaPhp\Contracts\DetectorInterface;
+use Rilwanfit\YauaaPhp\Detector\BotDetector;
+use Rilwanfit\YauaaPhp\Detector\BrowserDetector;
+use Rilwanfit\YauaaPhp\Detector\HackerToolDetector;
+use Rilwanfit\YauaaPhp\Detector\UnknownDetector;
+use Rilwanfit\YauaaPhp\Loader\PatternLoader;
 
 final class Analyzer
 {
-    private array $patterns;
+    /** @var DetectorInterface[] */
+    private array $detectors;
 
     public function __construct(string $patternFile)
     {
-        if (!file_exists($patternFile)) {
-            throw new InvalidArgumentException("Pattern file not found: $patternFile");
-        }
+        $patterns = (new PatternLoader($patternFile))->load();
 
-        $this->patterns = Yaml::parseFile($patternFile) ?? [];
+        $this->detectors = [
+            new HackerToolDetector(),
+            new BotDetector($patterns['bots'] ?? []),
+            new BrowserDetector($patterns['browsers'] ?? []),
+            new UnknownDetector(),
+        ];
     }
 
     public function analyze(string $userAgent): array
     {
-        foreach ($this->patterns['bots'] ?? [] as $bot) {
-            if (stripos($userAgent, $bot['pattern']) !== false) {
-                return [
-                    'agent' => [
-                        'type' => 'bot',
-                        'name' => $bot['name'],
-                        'version' => null,
-                    ],
-                ];
-            }
+        $userAgent = trim($userAgent);
+
+        if ($userAgent === '' || strlen($userAgent) < 10) {
+            return [
+                'agent' => [
+                    'type' => 'unknown',
+                    'name' => 'Empty or invalid user agent',
+                    'version' => null,
+                ]
+            ];
         }
 
-        foreach ($this->patterns['browsers'] ?? [] as $browser) {
-            if (preg_match($browser['pattern'], $userAgent, $matches)) {
-                return [
-                    'agent' => [
-                        'type' => 'browser',
-                        'name' => $browser['name'],
-                        'version' => $matches['version'] ?? null,
-                    ],
-                ];
+        foreach ($this->detectors as $detector) {
+            $result = $detector->detect($userAgent);
+            if ($result !== null) {
+                return ['agent' => $result];
             }
         }
 
         return [
             'agent' => [
-                'type' => 'unknown', 'name' => null, 'version' => null,
-            ],
+                'type' => 'unknown',
+                'name' => null,
+                'version' => null,
+            ]
         ];
     }
 }
