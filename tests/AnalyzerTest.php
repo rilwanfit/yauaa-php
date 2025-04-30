@@ -16,6 +16,15 @@ final class AnalyzerTest extends TestCase
         $this->analyzer = new Analyzer(__DIR__ . '/../resources/patterns.yaml');
     }
 
+    public function testWithDefaultPatternFile()
+    {
+        $analyzer = new Analyzer();
+        $result = $analyzer->analyze('Mozilla/5.0 Chrome/117.0.0.0 Safari/537.36');
+
+        $this->assertEquals('browser', $result['agent']['type']);
+        $this->assertEquals('Chrome', $result['agent']['name']);
+    }
+
     public function testChromeDetection()
     {
         $result = $this->analyzer->analyze('Mozilla/5.0 Chrome/117.0.0.0 Safari/537.36');

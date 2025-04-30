@@ -16,8 +16,13 @@ final class Analyzer
     /** @var DetectorInterface[] */
     private array $detectors;
 
-    public function __construct(string $patternFile)
+    public function __construct(?string $patternFile = null)
     {
+        if ($patternFile === null) {
+            // Resolve to this package's internal resource path
+            $patternFile = __DIR__ . '/../resources/patterns.yaml';
+        }
+
         $patterns = (new PatternLoader($patternFile))->load();
 
         $this->detectors = [
