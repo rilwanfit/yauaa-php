@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Rilwanfit\YauaaPhp\Detector;
 
 use Rilwanfit\YauaaPhp\Contracts\DetectorInterface;
@@ -14,11 +13,16 @@ final class BotDetector implements DetectorInterface
     public function detect(string $userAgent): ?array
     {
         foreach ($this->patterns as $bot) {
-            if (stripos($userAgent, $bot['pattern']) !== false) {
+            if (
+                isset($bot['pattern'], $bot['name']) &&
+                false !== stripos($userAgent, $bot['pattern'])
+            ) {
                 return [
-                    'type' => 'bot',
-                    'name' => $bot['name'],
-                    'version' => null,
+                    'agent' => [
+                        'type' => 'bot',
+                        'name' => $bot['name'],
+                        'version' => null,
+                    ],
                 ];
             }
         }

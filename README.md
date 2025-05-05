@@ -19,7 +19,7 @@ Without YAUAA, this PHP version wouldn't exist.
 - Detect browser (agent) name and version
 - Detect layout engine [ToDo]
 - Detect operating system and version [ToDo]
-- Detect device class, brand, and name [ToDo]
+- Detect device class, brand, and name
 - Basic bot detection support 
 - Pattern-driven and fully customizable (via YAML) 
 - No external dependencies required (except Symfony YAML parser)
@@ -44,24 +44,13 @@ $analyzer = new Analyzer(__DIR__ . '/resources/patterns.yaml');
 $result = $analyzer->analyze('Mozilla/5.0 Chrome/117.0.0.0 Safari/537.36');
 
 print_r($result);
-```
 
-### 🔍 Example Output
+if ($analyzer->isMobile()) {
+    echo "This is a mobile device.";
+}
 
-```php
-[
-    'agent' => [
-        'class' => 'Browser',
-        'name' => 'Chrome',
-        'version' => '117.0.0.0',
-        'version_major' => '117',
-        'name_version' => 'Chrome 117.0.0.0',
-        'name_version_major' => 'Chrome 117'
-    ],
-    'layout_engine' => [ ... ],
-    'os' => [ ... ],
-    'device' => [ ... ]
-]
+echo "Device class: " . $analyzer->getDeviceClass();
+echo "Agent type: " . $analyzer->getAgentType();
 ```
 
 ---

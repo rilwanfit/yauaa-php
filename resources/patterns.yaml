@@ -83,3 +83,60 @@ browsers:
 
   - pattern: "~QQBrowser/(?<version>[\\d\\.]+)~i"
     name: "QQ Browser"
+
+devices:
+  - pattern: "~iPhone~i"
+    class: "smartphone"
+    name: "iPhone"
+    brand: "Apple"
+
+  - pattern: "~iPad~i"
+    class: "tablet"
+    name: "iPad"
+    brand: "Apple"
+
+  - pattern: "~Samsung[- ]?(?<model>[^;/\\s]+)?~i"
+    class: "smartphone"
+    name: "${model}"
+    brand: "Samsung"
+
+  - pattern: "~SM-(?<model>[A-Z0-9]+)~i"
+    class: "smartphone"
+    name: "Galaxy SM-${model}"
+    brand: "Samsung"
+
+  - pattern: "~Pixel~i"
+    class: "smartphone"
+    name: "Pixel"
+    brand: "Google"
+
+  - pattern: "~Windows NT~i"
+    class: "desktop"
+    name: "Windows PC"
+    brand: "Microsoft"
+
+  - pattern: "~Macintosh|Mac OS~i"
+    class: "desktop"
+    name: "Mac"
+    brand: "Apple"
+
+  - pattern: "~Linux~i"
+    class: "desktop"
+    name: "Linux Machine"
+    brand: "Generic"
+
+  - pattern: '~Android.*Mobile~i'
+    class: 'smartphone'
+    brand: 'Generic'
+    name: 'Android Phone'
+
+  - pattern: "~Android.*Mobile~i"
+    class: "smartphone"
+    name: "Android Phone"
+    brand: "Generic"
+
+  - pattern: "~Android.*Tablet~i"
+    class: "tablet"
+    name: "Android Tablet"
+    brand: "Generic"
+

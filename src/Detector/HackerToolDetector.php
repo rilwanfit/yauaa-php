@@ -2,7 +2,6 @@
 
 declare(strict_types=1);
 
-
 namespace Rilwanfit\YauaaPhp\Detector;
 
 use Rilwanfit\YauaaPhp\Contracts\DetectorInterface;
@@ -10,8 +9,14 @@ use Rilwanfit\YauaaPhp\Contracts\DetectorInterface;
 final class HackerToolDetector implements DetectorInterface
 {
     private array $tools = [
-        'BrowserKit', 'curl', 'Wget', 'HeadlessChrome',
-        'PhantomJS', 'python-urllib', 'Java', 'Go-http-client'
+        'BrowserKit',
+        'curl',
+        'Wget',
+        'HeadlessChrome',
+        'PhantomJS',
+        'python-urllib',
+        'Java',
+        'Go-http-client',
     ];
 
     public function detect(string $userAgent): ?array
@@ -19,9 +24,11 @@ final class HackerToolDetector implements DetectorInterface
         foreach ($this->tools as $tool) {
             if (stripos($userAgent, $tool) !== false) {
                 return [
-                    'type' => 'hacker',
-                    'name' => $tool,
-                    'version' => null,
+                    'agent' => [
+                        'type' => 'hacker',
+                        'name' => $tool,
+                        'version' => null,
+                    ],
                 ];
             }
         }
